@@ -1,491 +1,507 @@
-    :root {
-      --purple:      #300F77;
-      --purple-dark: #1d0a4a;
-      --purple-glow: rgba(48, 15, 119, 0.6);
-      --blue-link:   #85B8FF;
-      --blue-accent: #00aaff;
-      --blue-glow:   rgba(0, 170, 255, 0.3);
-      --cream:       #f0ecff;
-      --muted:       #8a9bb0;
-      --radius:      16px;
-      --trans:       0.3s ease;
-    }
+/* 
+   SF VIEWS — style.css
+   Design tokens harmonized with Cohort #34 directory
+   Nav purple: #300F77  |  Link blue: #85B8FF
+   Accent blue: #00aaff |  Fonts: Ubuntu + Open Sans
+*/
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── TOKENS ── */
+:root {
+  --purple:      #300F77;
+  --purple-dark: #1d0a4a;
+  --purple-glow: rgba(48, 15, 119, 0.6);
+  --blue-link:   #85B8FF;
+  --blue-accent: #00aaff;
+  --blue-glow:   rgba(0, 170, 255, 0.3);
+  --cream:       #f0ecff;
+  --muted:       #8a9bb0;
+  --radius:      16px;
+  --trans:       0.3s ease;
+}
 
-    body {
-      font-family: 'Open Sans', sans-serif;
-      font-weight: 300;
-      color: #fff;
-      background-color: #0a0520;
-      overflow-x: hidden;
-    }
+/* ── RESET / BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ── ANIMATED SCROLLING BACKGROUND (from cohort directory) ── */
-    .scrolling-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background-image:
-        linear-gradient(to bottom, rgba(10,5,32,0.55) 0%, rgba(10,5,32,0.85) 100%),
-        url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1800&q=75');
-      background-size: cover;
-      background-repeat: repeat-y;
-      animation: scroll-vertical 20s linear infinite alternate;
-    }
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  background-color: #0a0520;
+  overflow-x: hidden;
+}
 
-    @keyframes scroll-vertical {
-      0%   { background-position: center 0%; }
-      100% { background-position: center 100%; }
-    }
+/* ── ANIMATED SCROLLING BACKGROUND (from cohort directory) ── */
+.scrolling-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(to bottom, rgba(10,5,32,0.55) 0%, rgba(10,5,32,0.85) 100%),
+    url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1800&q=75');
+  background-size: cover;
+  background-repeat: repeat-y;
+  animation: scroll-vertical 20s linear infinite alternate;
+}
 
-    /* ── NAVBAR (matches cohort nav) ── */
-    nav.navbar {
-      background-color: var(--purple) !important;
-      border-bottom: 1px solid rgba(133, 184, 255, 0.15);
-      font-family: 'Ubuntu', sans-serif;
-    }
+@keyframes scroll-vertical {
+  0%   { background-position: center 0%; }
+  100% { background-position: center 100%; }
+}
 
-    .navbar-brand {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      color: #fff !important;
-    }
+/* ── NAVBAR ── */
+nav.navbar {
+  background-color: var(--purple) !important;
+  border-bottom: 1px solid rgba(133, 184, 255, 0.15);
+  font-family: 'Ubuntu', sans-serif;
+}
 
-    .navbar-brand em { color: var(--blue-link); font-style: italic; }
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #fff !important;
+}
 
-    .nav-link { color: var(--blue-link) !important; font-size: 0.88rem; letter-spacing: 0.04em; transition: color var(--trans); }
-    .nav-link:hover { color: #fff !important; }
+.navbar-brand em { color: var(--blue-link); font-style: italic; }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 88vh;
-      display: flex;
-      align-items: flex-end;
-      padding: 5rem 2rem 4rem;
-      position: relative;
-    }
+.nav-link {
+  color: var(--blue-link) !important;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  transition: color var(--trans);
+}
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 180px;
-      background: linear-gradient(to top, #0a0520, transparent);
-      pointer-events: none;
-    }
+.nav-link:hover { color: #fff !important; }
 
-    .hero-content { animation: fadeUp 0.8s ease both; }
+/* ── HERO ── */
+.hero {
+  min-height: 88vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 5rem 2rem 4rem;
+  position: relative;
+}
 
-    .hero-eyebrow {
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--blue-accent);
-      margin-bottom: 0.8rem;
-      font-weight: 400;
-    }
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 180px;
+  background: linear-gradient(to top, #0a0520, transparent);
+  pointer-events: none;
+}
 
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6.5vw, 5rem);
-      line-height: 1.08;
-      color: #fff;
-      margin-bottom: 1.1rem;
-    }
+.hero-content { animation: fadeUp 0.8s ease both; }
 
-    .hero h1 em { color: var(--blue-link); font-style: italic; }
+.hero-eyebrow {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue-accent);
+  margin-bottom: 0.8rem;
+  font-weight: 400;
+}
 
-    .hero-sub {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.75;
-      margin-bottom: 2.2rem;
-    }
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6.5vw, 5rem);
+  line-height: 1.08;
+  color: #fff;
+  margin-bottom: 1.1rem;
+}
 
-    /* cohort-style button */
-    .btn-view {
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75em 1.8em;
-      border-radius: 0.75em;
-      background: linear-gradient(135deg, var(--purple), #5522cc);
-      color: #fff;
-      border: 1px solid rgba(133, 184, 255, 0.3);
-      box-shadow: 0 0 20px var(--purple-glow);
-      cursor: pointer;
-      text-decoration: none;
-      transition: all var(--trans);
-    }
+.hero h1 em { color: var(--blue-link); font-style: italic; }
 
-    .btn-view:hover {
-      background: linear-gradient(135deg, #4a1aaa, #6633ee);
-      box-shadow: 0 0 30px rgba(85,34,204,0.7);
-      color: #fff;
-      transform: translateY(-2px);
-    }
+.hero-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.75;
+  margin-bottom: 2.2rem;
+}
 
-    /* ── CATALOG SECTION ── */
-    #catalog {
-      padding: 3.5rem 1.25rem 5rem;
-      max-width: 1280px;
-      margin: 0 auto;
-    }
+/* cohort-style CTA button */
+.btn-view {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75em 1.8em;
+  border-radius: 0.75em;
+  background: linear-gradient(135deg, var(--purple), #5522cc);
+  color: #fff;
+  border: 1px solid rgba(133, 184, 255, 0.3);
+  box-shadow: 0 0 20px var(--purple-glow);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--trans);
+}
 
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
+.btn-view:hover {
+  background: linear-gradient(135deg, #4a1aaa, #6633ee);
+  box-shadow: 0 0 30px rgba(85,34,204,0.7);
+  color: #fff;
+  transform: translateY(-2px);
+}
 
-    .section-title {
-      font-family: 'Ubuntu', sans-serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 500;
-      color: #fff;
-    }
+/* ── CATALOG SECTION ── */
+#catalog {
+  padding: 3.5rem 1.25rem 5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
 
-    .section-title span { color: var(--blue-link); }
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
 
-    /* ── CONTROLS ── */
-    .controls { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.section-title {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 500;
+  color: #fff;
+}
 
-    .filter-btn {
-      background: transparent;
-      border: 1px solid rgba(133, 184, 255, 0.3);
-      color: var(--muted);
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all var(--trans);
-    }
+.section-title span { color: var(--blue-link); }
 
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--purple);
-      border-color: var(--blue-link);
-      color: var(--blue-link);
-      box-shadow: 0 0 12px var(--purple-glow);
-    }
+/* ── FILTER & SORT CONTROLS ── */
+.controls { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 
-    .sort-select {
-      background: rgba(48,15,119,0.4);
-      border: 1px solid rgba(133,184,255,0.25);
-      color: var(--muted);
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 0.72rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 20px;
-      cursor: pointer;
-      outline: none;
-      transition: all var(--trans);
-    }
+.filter-btn {
+  background: transparent;
+  border: 1px solid rgba(133, 184, 255, 0.3);
+  color: var(--muted);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all var(--trans);
+}
 
-    .sort-select:hover { border-color: var(--blue-link); color: #fff; }
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--purple);
+  border-color: var(--blue-link);
+  color: var(--blue-link);
+  box-shadow: 0 0 12px var(--purple-glow);
+}
 
-    /* ── CARD GRID ── */
-    #card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1.25rem;
-    }
+.sort-select {
+  background: rgba(48,15,119,0.4);
+  border: 1px solid rgba(133,184,255,0.25);
+  color: var(--muted);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.72rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--trans);
+}
 
-    /* ── CARD — cohort holographic style ── */
-    .view-card {
-      position: relative;
-      border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      background-image: var(--bg-img);
-      background-size: cover;
-      background-position: center;
-      aspect-ratio: 3/4;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans);
-      transform: rotateX(var(--ty, 0deg)) rotateY(var(--tx, 0deg));
-      animation: fadeUp 0.5s ease both;
-      --lp: 50%; --tp: 50%; --opc: 0;
-      --color1: rgba(0,170,255,0.5);
-      --color2: rgba(170,0,255,0.5);
-    }
+.sort-select:hover { border-color: var(--blue-link); color: #fff; }
 
-    /* holo shimmer layer */
-    .view-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(115deg,
-        transparent 0%, var(--color1) 30%,
-        transparent 50%, var(--color2) 70%, transparent 100%);
-      background-size: 300% 300%;
-      background-position: var(--lp) var(--tp);
-      mix-blend-mode: color-dodge;
-      opacity: var(--opc);
-      z-index: 1;
-      pointer-events: none;
-      transition: opacity 0.33s ease;
-    }
+/* ── CARD GRID ── */
+#card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.25rem;
+}
 
-    .view-card:hover {
-      transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 25px var(--blue-glow);
-      border-color: rgba(0,170,255,0.35);
-    }
+/* ── CARD — cohort holographic style ── */
+.view-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-position: center;
+  aspect-ratio: 3/4;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans);
+  transform: rotateX(var(--ty, 0deg)) rotateY(var(--tx, 0deg));
+  animation: fadeUp 0.5s ease both;
+  --lp: 50%; --tp: 50%; --opc: 0;
+  --color1: rgba(0,170,255,0.5);
+  --color2: rgba(170,0,255,0.5);
+}
 
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(10,5,32,0.95) 0%, rgba(10,5,32,0.3) 55%, transparent 100%);
-      z-index: 2;
-    }
+/* holographic shimmer layer */
+.view-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(115deg,
+    transparent 0%, var(--color1) 30%,
+    transparent 50%, var(--color2) 70%, transparent 100%);
+  background-size: 300% 300%;
+  background-position: var(--lp) var(--tp);
+  mix-blend-mode: color-dodge;
+  opacity: var(--opc);
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.33s ease;
+}
 
-    .card-category {
-      position: absolute;
-      top: 0.9rem; left: 0.9rem;
-      background: rgba(48,15,119,0.75);
-      color: var(--blue-link);
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 0.28rem 0.7rem;
-      border-radius: 20px;
-      border: 1px solid rgba(133,184,255,0.25);
-      backdrop-filter: blur(4px);
-      z-index: 3;
-    }
+.view-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 25px var(--blue-glow);
+  border-color: rgba(0,170,255,0.35);
+}
 
-    .card-like {
-      position: absolute;
-      bottom: 5.8rem; right: 0.9rem;
-      background: rgba(10,5,32,0.7);
-      border: 1px solid rgba(133,184,255,0.2);
-      color: #fff;
-      font-size: 0.8rem;
-      padding: 0.3rem 0.65rem;
-      border-radius: 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: all var(--trans);
-      backdrop-filter: blur(4px);
-      z-index: 5;
-    }
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,5,32,0.95) 0%, rgba(10,5,32,0.3) 55%, transparent 100%);
+  z-index: 2;
+}
 
-    .card-like:hover, .card-like.liked {
-      background: rgba(0,170,255,0.25);
-      border-color: var(--blue-accent);
-      box-shadow: 0 0 10px var(--blue-glow);
-    }
+.card-category {
+  position: absolute;
+  top: 0.9rem; left: 0.9rem;
+  background: rgba(48,15,119,0.75);
+  color: var(--blue-link);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.7rem;
+  border-radius: 20px;
+  border: 1px solid rgba(133,184,255,0.25);
+  backdrop-filter: blur(4px);
+  z-index: 3;
+}
 
-    /* glass footer — mirrors cohort .pc-glass-footer */
-    .card-glass-footer {
-      position: absolute;
-      bottom: 0.9rem; left: 0.9rem; right: 0.9rem;
-      background: rgba(183,213,241,0.12);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 14px;
-      padding: 12px 14px;
-      z-index: 4;
-      pointer-events: none;
-      transition: background var(--trans);
-    }
+.card-like {
+  position: absolute;
+  bottom: 5.8rem; right: 0.9rem;
+  background: rgba(10,5,32,0.7);
+  border: 1px solid rgba(133,184,255,0.2);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all var(--trans);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
 
-    .view-card:hover .card-glass-footer { background: rgba(48,15,119,0.45); }
+.card-like:hover,
+.card-like.liked {
+  background: rgba(0,170,255,0.25);
+  border-color: var(--blue-accent);
+  box-shadow: 0 0 10px var(--blue-glow);
+}
 
-    .card-name {
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--blue-link);
-      text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
-      margin-bottom: 0.2rem;
-    }
+/* glass footer — mirrors cohort .pc-glass-footer */
+.card-glass-footer {
+  position: absolute;
+  bottom: 0.9rem; left: 0.9rem; right: 0.9rem;
+  background: rgba(183,213,241,0.12);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 12px 14px;
+  z-index: 4;
+  pointer-events: none;
+  transition: background var(--trans);
+}
 
-    .card-neighborhood {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #c9b8ff;
-    }
+.view-card:hover .card-glass-footer { background: rgba(48,15,119,0.45); }
 
-    /* ── LOADING STATE ── */
-    .loading-msg {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 5rem 0;
-      color: var(--muted);
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-    }
+.card-name {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--blue-link);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+  margin-bottom: 0.2rem;
+}
 
-    /* ── MODAL — blue glow from cohort directory (Joselito) ── */
-    .modal-backdrop-custom {
-      display: none;
-      position: fixed;
-      z-index: 1050;
-      inset: 0;
-      background: rgba(0,0,0,0.88);
-      backdrop-filter: blur(12px);
-      align-items: center;
-      justify-content: center;
-    }
+.card-neighborhood {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #c9b8ff;
+}
 
-    .modal-backdrop-custom.open { display: flex; }
+/* ── LOADING STATE ── */
+.loading-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 5rem 0;
+  color: var(--muted);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
 
-    .modal-panel {
-      color: white;
-      background: linear-gradient(145deg, #1a1a2e, #0d0d1a);
-      width: 92%;
-      max-width: 880px;
-      max-height: 90vh;
-      overflow-y: auto;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 0 50px var(--blue-glow);
-      position: relative;
-      padding: 40px;
-      animation: fadeUp 0.3s ease;
-    }
+/* ── MODAL — blue glow (cohort directory pattern) ── */
+.modal-backdrop-custom {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(12px);
+  align-items: center;
+  justify-content: center;
+}
 
-    .modal-close {
-      position: absolute;
-      right: 20px; top: 14px;
-      font-size: 2rem;
-      cursor: pointer;
-      color: #666;
-      background: none;
-      border: none;
-      line-height: 1;
-      transition: color var(--trans);
-    }
+.modal-backdrop-custom.open { display: flex; }
 
-    .modal-close:hover { color: #fff; }
+.modal-panel {
+  color: white;
+  background: linear-gradient(145deg, #1a1a2e, #0d0d1a);
+  width: 92%;
+  max-width: 880px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 50px var(--blue-glow);
+  position: relative;
+  padding: 40px;
+  animation: fadeUp 0.3s ease;
+}
 
-    .modal-top {
-      display: flex;
-      gap: 28px;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
+.modal-close {
+  position: absolute;
+  right: 20px; top: 14px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #666;
+  background: none;
+  border: none;
+  line-height: 1;
+  transition: color var(--trans);
+}
 
-    .modal-photo {
-      width: 260px;
-      height: 320px;
-      border-radius: 16px;
-      background-size: cover;
-      background-position: center;
-      border: 2px solid rgba(0,170,255,0.35);
-      flex-shrink: 0;
-    }
+.modal-close:hover { color: #fff; }
 
-    .modal-info { flex: 1; min-width: 200px; }
+.modal-top {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
 
-    .modal-title {
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
+.modal-photo {
+  width: 260px;
+  height: 320px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(0,170,255,0.35);
+  flex-shrink: 0;
+}
 
-    .modal-subtitle {
-      color: var(--blue-accent);
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-    }
+.modal-info { flex: 1; min-width: 200px; }
 
-    .modal-badge {
-      display: inline-block;
-      background: rgba(48,15,119,0.5);
-      color: var(--blue-link);
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 0.28rem 0.8rem;
-      border-radius: 20px;
-      border: 1px solid rgba(133,184,255,0.3);
-      margin-bottom: 1rem;
-    }
+.modal-title {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
 
-    .info-box {
-      background: rgba(255,255,255,0.04);
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
+.modal-subtitle {
+  color: var(--blue-accent);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
 
-    .info-box label {
-      display: block;
-      color: var(--blue-accent);
-      font-size: 0.65rem;
-      font-weight: 700;
-      font-family: 'Open Sans', sans-serif;
-      letter-spacing: 0.1em;
-      margin-bottom: 4px;
-    }
+.modal-badge {
+  display: inline-block;
+  background: rgba(48,15,119,0.5);
+  color: var(--blue-link);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid rgba(133,184,255,0.3);
+  margin-bottom: 1rem;
+}
 
-    .info-box p {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: #c8d8e8;
-    }
+.info-box {
+  background: rgba(255,255,255,0.04);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
 
-    /* ── ABOUT SECTION ── */
-    #about {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 5rem;
-    }
+.info-box label {
+  display: block;
+  color: var(--blue-accent);
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
 
-    /* ── FOOTER ── */
-    footer {
-      background-color: var(--purple);
-      border-top: 1px solid rgba(133,184,255,0.15);
-      padding: 1.8rem 1.5rem;
-      text-align: center;
-      font-family: 'Ubuntu', sans-serif;
-      font-size: 0.8rem;
-      color: var(--blue-link);
-    }
+.info-box p {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #c8d8e8;
+}
 
-    footer a { color: #fff; transition: opacity var(--trans); }
-    footer a:hover { opacity: 0.7; }
+/* ── ABOUT SECTION ── */
+#about {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+/* ── FOOTER ── */
+footer {
+  background-color: var(--purple);
+  border-top: 1px solid rgba(133,184,255,0.15);
+  padding: 1.8rem 1.5rem;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.8rem;
+  color: var(--blue-link);
+}
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 576px) {
-      .modal-photo { width: 100%; height: 220px; }
-      .modal-panel { padding: 24px 18px; }
-      .section-header { flex-direction: column; align-items: flex-start; }
-    }
+footer a { color: #fff; transition: opacity var(--trans); }
+footer a:hover { opacity: 0.7; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 576px) {
+  .modal-photo { width: 100%; height: 220px; }
+  .modal-panel { padding: 24px 18px; }
+  .section-header { flex-direction: column; align-items: flex-start; }
+}
