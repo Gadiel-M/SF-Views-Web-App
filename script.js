@@ -1,39 +1,29 @@
 "use strict";
+const BASE_ID = 'appuzIP4S09O1J427';
+const API_KEY = 'pat8YgpxMOutcFbk8.8cde4fdfb5d2445441fc11c0b50910415ec2aa0c810811fdfa930bdd892fd70a';
+const TABLE   = 'SF';
 
-/* ══════════════════════════════════════════════════
-   SF VIEWS — script.js
+const MAPS_KEY = 'AIzaSyC4MKsKYpbewxQh0AmlP-E5y4-yHMgcK3o';
 
-   AIRTABLE CONFIG
-   ─ BASE_ID and API_KEY are from your class directory.
-   ─ Change TABLE to your SF Views table name.
-   ─ Update the F{} field names to match your
-     Airtable column headers exactly.
-══════════════════════════════════════════════════ */
-const BASE_ID = 'app3knV6H85zkGHHn';
-const API_KEY = 'patUNR9zih8lRzsj6.9746de26cc7d3ddf1ca83d7766c8a76ccc9b09c61954e51f26dcb18bb946ad4a';
-const TABLE   = 'Views'; // ← update to your SF Views table name
-
-/* Field name map — update values to match your Airtable column headers */
 const F = {
   name:         'Name',
-  description:  'Description',
+  parking:      'Parking Availability / Accessibility',
+  website:      'Website',
+  hours:        'Hours of Access',
   neighborhood: 'Neighborhood',
-  category:     'Category',  // e.g. "Overlook", "Waterfront", "Park", "Hidden Gem"
-  image:        'Image',     // Attachment field
-  bestTime:     'Best Time', // e.g. "Sunset", "Golden Hour", "Anytime"
+  category:     'Category',
+  image:        'Images',
+  location:     'Location',
+  reviews:      'Reviews',
 };
 
-/* ══════════════════════════════════════════════════
-   STATE
-══════════════════════════════════════════════════ */
+// state
 let allRecords    = [];
 let currentFilter = 'all';
 let currentSort   = 'default';
 let likes = JSON.parse(localStorage.getItem('sfviews-likes') || '{}');
 
-/* ══════════════════════════════════════════════════
-   FETCH FROM AIRTABLE
-══════════════════════════════════════════════════ */
+// airtable fetching
 async function fetchViews() {
   const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE)}`;
   try {
@@ -53,16 +43,14 @@ async function fetchViews() {
   }
 }
 
-/* ══════════════════════════════════════════════════
-   BUILD A SINGLE CARD
-══════════════════════════════════════════════════ */
+// building card from record
 function buildCard(record, index) {
   const f   = record.fields;
   const id  = record.id;
 
-  const name   = f[F.name]         || 'Unnamed Spot';
-  const hood   = f[F.neighborhood] || '';
-  const cat    = (f[F.category]    || 'View').toLowerCase();
+  const name   = f[F.name]         || '---';
+  const hood   = f[F.neighborhood] || '---';
+  const cat    = (f[F.category]    || 'Spot').toLowerCase();
   const imgs   = f[F.image];
   const imgUrl = (imgs && imgs[0])
     ? imgs[0].url
@@ -93,20 +81,10 @@ function buildCard(record, index) {
     </div>`;
 }
 
-/* ══════════════════════════════════════════════════
-   RENDER CARDS (applies current filter + sort)
-══════════════════════════════════════════════════ */
+// card rendering with sorting and filtering
 function renderCards() {
   let records = [...allRecords];
-
-  // Filter
-  if (currentFilter !== 'all') {
-    records = records.filter(r =>
-      (r.fields[F.category] || '').toLowerCase() === currentFilter
-    );
-  }
-
-  // Sort
+// Sort
   if (currentSort === 'liked') {
     records.sort((a, b) => (likes[b.id]?.count || 0) - (likes[a.id]?.count || 0));
   } else if (currentSort === 'az') {
@@ -119,13 +97,10 @@ function renderCards() {
     ? records.map((r, i) => buildCard(r, i)).join('')
     : `<div class="loading-msg">No spots found for this filter.</div>`;
 
-  initHolo(); // re-bind holo effect after DOM update
+  initHolo();
 }
 
-/* ══════════════════════════════════════════════════
-   HOLOGRAPHIC MOUSE EFFECT
-   Ported from Cohort #34 class directory script.js
-══════════════════════════════════════════════════ */
+// holo mousemove effect
 function initHolo() {
   const grid = document.getElementById('card-grid');
 
@@ -161,10 +136,7 @@ function onGridMouseLeave() {
   });
 }
 
-/* ══════════════════════════════════════════════════
-   LIKE / UNLIKE
-   Persisted in localStorage so likes survive page refresh
-══════════════════════════════════════════════════ */
+// like stored locally
 function toggleLike(event, id) {
   event.stopPropagation(); // prevent card click → modal
   if (!likes[id]) likes[id] = { liked: false, count: 0 };
@@ -183,9 +155,7 @@ function toggleLike(event, id) {
   }
 }
 
-/* ══════════════════════════════════════════════════
-   MODAL — open / close
-══════════════════════════════════════════════════ */
+// modal
 function openModal(id) {
   const record = allRecords.find(r => r.id === id);
   if (!record) return;
@@ -193,14 +163,38 @@ function openModal(id) {
   const imgs   = f[F.image];
   const imgUrl = (imgs && imgs[0]) ? imgs[0].url : '';
 
-  document.getElementById('modal-title').textContent    = f[F.name]         || '—';
-  document.getElementById('modal-subtitle').textContent = f[F.neighborhood] || '—';
-  document.getElementById('modal-badge').textContent    = f[F.category]     || 'View';
-  document.getElementById('modal-desc').textContent     = f[F.description]  || '—';
-  document.getElementById('modal-time').textContent     = f[F.bestTime]     || '—';
+  document.getElementById('modal-badge').textContent    = f[F.website]      || '---';
+  document.getElementById('modal-title').textContent    = f[F.name]         || '---';
+  document.getElementById('modal-subtitle').textContent = f[F.neighborhood] || '---';
+  document.getElementById('modal-parking').textContent     = f[F.parking]  || '---';
+  document.getElementById('modal-hours').textContent     = f[F.hours]     || '---';
+  document.getElementById('modal-reviews').textContent     = f[F.reviews]     || '---';
   document.getElementById('modal-likes').textContent    = likes[id]?.count  || 0;
   document.getElementById('modal-photo').style.backgroundImage =
     imgUrl ? `url('${imgUrl}')` : 'none';
+
+    const siteLink   = document.getElementById('modal-site-link');
+  const websiteUrl = f[F.website] || '';
+ 
+  if (websiteUrl) {
+    siteLink.href           = websiteUrl;
+    siteLink.style.display  = 'flex';
+  } else {
+    siteLink.style.display  = 'none';
+  }
+  
+    const mapQuery = encodeURIComponent(
+    f[F.location] || `${f[F.name] || 'San Francisco'}, San Francisco, CA`
+  );
+  const mapFrame = document.getElementById('modal-map');
+
+  if (MAPS_KEY && MAPS_KEY !== 'AIzaSyC4MKsKYpbewxQh0AmlP-E5y4-yHMgcK3o') {
+// Paid Embed API
+    mapFrame.src = `https://www.google.com/maps/embed/v1/view?key=${MAPS_KEY}&q=${mapQuery}&zoom=15&maptype=roadmap`;
+  } else {
+// Free fallback
+    mapFrame.src = `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+  }
 
   document.getElementById('detail-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -211,37 +205,20 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// Close on backdrop click
+// close on click
 function handleModalClick(e) {
   if (e.target === document.getElementById('detail-modal')) closeModal();
 }
 
-// Close on Escape key
+// close on escape
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
 
-/* ══════════════════════════════════════════════════
-   FILTER BUTTONS
-══════════════════════════════════════════════════ */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    renderCards();
-  });
-});
-
-/* ══════════════════════════════════════════════════
-   SORT SELECT
-══════════════════════════════════════════════════ */
+/* sort */
 document.getElementById('sort-select').addEventListener('change', e => {
   currentSort = e.target.value;
   renderCards();
 });
 
-/* ══════════════════════════════════════════════════
-   INIT
-══════════════════════════════════════════════════ */
 fetchViews();

@@ -1,25 +1,16 @@
-/* 
-   SF VIEWS — style.css
-   Design tokens harmonized with Cohort #34 directory
-   Nav purple: #300F77  |  Link blue: #85B8FF
-   Accent blue: #00aaff |  Fonts: Ubuntu + Open Sans
-*/
-
-/* ── TOKENS ── */
 :root {
   --purple:      #300F77;
   --purple-dark: #1d0a4a;
   --purple-glow: rgba(48, 15, 119, 0.6);
-  --blue-link:   #85B8FF;
-  --blue-accent: #00aaff;
-  --blue-glow:   rgba(0, 170, 255, 0.3);
+  --gold:        #ddaf30;
+  --blue-accent: #55b9d8;
+  --blue-glow:   rgba(247, 213, 21, 0.3);
   --cream:       #f0ecff;
   --muted:       #8a9bb0;
   --radius:      16px;
   --trans:       0.3s ease;
 }
 
-/* ── RESET / BASE ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -30,14 +21,14 @@ body {
   overflow-x: hidden;
 }
 
-/* ── ANIMATED SCROLLING BACKGROUND (from cohort directory) ── */
+/* animated background */
 .scrolling-bg {
   position: fixed;
   inset: 0;
   z-index: -2;
   background-image:
     linear-gradient(to bottom, rgba(10,5,32,0.55) 0%, rgba(10,5,32,0.85) 100%),
-    url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1800&q=75');
+    url('missionhighschoolsunrise1.png');
   background-size: cover;
   background-repeat: repeat-y;
   animation: scroll-vertical 20s linear infinite alternate;
@@ -48,7 +39,7 @@ body {
   100% { background-position: center 100%; }
 }
 
-/* ── NAVBAR ── */
+/* navbar */
 nav.navbar {
   background-color: var(--purple) !important;
   border-bottom: 1px solid rgba(133, 184, 255, 0.15);
@@ -61,10 +52,10 @@ nav.navbar {
   color: #fff !important;
 }
 
-.navbar-brand em { color: var(--blue-link); font-style: italic; }
+.navbar-brand em { color: var(--gold); font-style: italic; }
 
 .nav-link {
-  color: var(--blue-link) !important;
+  color: var(--gold) !important;
   font-size: 0.88rem;
   letter-spacing: 0.04em;
   transition: color var(--trans);
@@ -72,7 +63,7 @@ nav.navbar {
 
 .nav-link:hover { color: #fff !important; }
 
-/* ── HERO ── */
+/* hero */
 .hero {
   min-height: 88vh;
   display: flex;
@@ -85,10 +76,11 @@ nav.navbar {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 180px;
-  background: linear-gradient(to top, #0a0520, transparent);
+  height: 60px;
+  background: linear-gradient(to top, #b99e42, transparent);
   pointer-events: none;
 }
+
 
 .hero-content { animation: fadeUp 0.8s ease both; }
 
@@ -110,7 +102,7 @@ nav.navbar {
   margin-bottom: 1.1rem;
 }
 
-.hero h1 em { color: var(--blue-link); font-style: italic; }
+.hero h1 em { color: var(--gold); font-style: italic; }
 
 .hero-sub {
   font-family: 'Open Sans', sans-serif;
@@ -121,7 +113,7 @@ nav.navbar {
   margin-bottom: 2.2rem;
 }
 
-/* cohort-style CTA button */
+/* button */
 .btn-view {
   font-family: 'Ubuntu', sans-serif;
   font-size: 0.85rem;
@@ -148,7 +140,7 @@ nav.navbar {
   transform: translateY(-2px);
 }
 
-/* ── CATALOG SECTION ── */
+/* catalog */
 #catalog {
   padding: 3.5rem 1.25rem 5rem;
   max-width: 1280px;
@@ -171,9 +163,9 @@ nav.navbar {
   color: #fff;
 }
 
-.section-title span { color: var(--blue-link); }
+.section-title span { color: var(--gold); }
 
-/* ── FILTER & SORT CONTROLS ── */
+/* sort */
 .controls { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 
 .filter-btn {
@@ -194,8 +186,8 @@ nav.navbar {
 .filter-btn:hover,
 .filter-btn.active {
   background: var(--purple);
-  border-color: var(--blue-link);
-  color: var(--blue-link);
+  border-color: var(--gold);
+  color: var(--gold);
   box-shadow: 0 0 12px var(--purple-glow);
 }
 
@@ -212,16 +204,16 @@ nav.navbar {
   transition: all var(--trans);
 }
 
-.sort-select:hover { border-color: var(--blue-link); color: #fff; }
+.sort-select:hover { border-color: var(--gold); color: #fff; }
 
-/* ── CARD GRID ── */
+/* card grid */
 #card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 1.25rem;
 }
 
-/* ── CARD — cohort holographic style ── */
+/* card */
 .view-card {
   position: relative;
   border-radius: var(--radius);
@@ -274,7 +266,7 @@ nav.navbar {
   position: absolute;
   top: 0.9rem; left: 0.9rem;
   background: rgba(48,15,119,0.75);
-  color: var(--blue-link);
+  color: var(--gold);
   font-family: 'Ubuntu', sans-serif;
   font-size: 0.62rem;
   font-weight: 500;
@@ -312,7 +304,7 @@ nav.navbar {
   box-shadow: 0 0 10px var(--blue-glow);
 }
 
-/* glass footer — mirrors cohort .pc-glass-footer */
+/* glass footer */
 .card-glass-footer {
   position: absolute;
   bottom: 0.9rem; left: 0.9rem; right: 0.9rem;
@@ -332,7 +324,7 @@ nav.navbar {
   font-family: 'Ubuntu', sans-serif;
   font-size: 1.05rem;
   font-weight: 500;
-  color: var(--blue-link);
+  color: var(--gold);
   text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
   margin-bottom: 0.2rem;
 }
@@ -344,7 +336,7 @@ nav.navbar {
   color: #c9b8ff;
 }
 
-/* ── LOADING STATE ── */
+/* while loading */
 .loading-msg {
   grid-column: 1 / -1;
   text-align: center;
@@ -355,7 +347,7 @@ nav.navbar {
   letter-spacing: 0.08em;
 }
 
-/* ── MODAL — blue glow (cohort directory pattern) ── */
+/* modal */
 .modal-backdrop-custom {
   display: none;
   position: fixed;
@@ -371,7 +363,7 @@ nav.navbar {
 
 .modal-panel {
   color: white;
-  background: linear-gradient(145deg, #1a1a2e, #0d0d1a);
+  background: linear-gradient(145deg, #2f2f58, #0d0d1a);
   width: 92%;
   max-width: 880px;
   max-height: 90vh;
@@ -432,10 +424,10 @@ nav.navbar {
   margin-bottom: 1.2rem;
 }
 
-.modal-badge {
+.modal-badge-row {
   display: inline-block;
   background: rgba(48,15,119,0.5);
-  color: var(--blue-link);
+  color: var(--gold);
   font-family: 'Ubuntu', sans-serif;
   font-size: 0.65rem;
   letter-spacing: 0.14em;
@@ -472,14 +464,7 @@ nav.navbar {
   color: #c8d8e8;
 }
 
-/* ── ABOUT SECTION ── */
-#about {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 5rem;
-}
-
-/* ── FOOTER ── */
+/* footer */
 footer {
   background-color: var(--purple);
   border-top: 1px solid rgba(133,184,255,0.15);
@@ -487,21 +472,45 @@ footer {
   text-align: center;
   font-family: 'Ubuntu', sans-serif;
   font-size: 0.8rem;
-  color: var(--blue-link);
+  color: var(--gold);
 }
 
 footer a { color: #fff; transition: opacity var(--trans); }
 footer a:hover { opacity: 0.7; }
 
-/* ── ANIMATIONS ── */
+.map-wrap {
+  margin-top: 1.2rem;
+}
+.map-label {
+  display: block;
+  color: var(--blue-accent);
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.map-wrap iframe {
+  border-radius: 14px;
+  border: 1px solid rgba(0, 170, 255, 0.25);
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.12);
+  display: block;
+  width: 100%;
+  height: 280px;
+}
+
+/* animations */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(22px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── RESPONSIVE ── */
+/* responsiveness */
 @media (max-width: 576px) {
   .modal-photo { width: 100%; height: 220px; }
   .modal-panel { padding: 24px 18px; }
   .section-header { flex-direction: column; align-items: flex-start; }
+  .map-wrap iframe { height: 220px; }
 }
