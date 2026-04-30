@@ -163,7 +163,6 @@ function openModal(id) {
   const imgs   = f[F.image];
   const imgUrl = (imgs && imgs[0]) ? imgs[0].url : '';
 
-  document.getElementById('modal-badge').textContent    = f[F.website]      || '---';
   document.getElementById('modal-title').textContent    = f[F.name]         || '---';
   document.getElementById('modal-subtitle').textContent = f[F.neighborhood] || '---';
   document.getElementById('modal-parking').textContent     = f[F.parking]  || '---';
