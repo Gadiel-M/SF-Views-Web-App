@@ -50,7 +50,7 @@ function buildCard(record, index) {
 
   const name   = f[F.name]         || '---';
   const hood   = f[F.neighborhood] || '---';
-  const cat    = (f[F.category]    || 'Spot').toLowerCase();
+  const cat    = (f[F.category]    || 'Scenery').toLowerCase();
   const imgs   = f[F.image];
   const imgUrl = (imgs && imgs[0])
     ? imgs[0].url

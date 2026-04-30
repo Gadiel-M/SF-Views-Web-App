@@ -77,7 +77,6 @@ nav.navbar {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 60px;
-  background: linear-gradient(to top, #b99e42, transparent);
   pointer-events: none;
 }
 
